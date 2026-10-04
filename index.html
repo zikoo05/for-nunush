@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Open When... ❤️</title>
+
+  <style>
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+    body {
+
+      min-height: 100vh;
+
+      font-family: Arial, sans-serif;
+
+      background: linear-gradient(135deg, #16001f, #42002f, #16001f);
+
+      color: white;
+
+      overflow-x: hidden;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 30px 15px;
+
+    }
+
+    .stars {
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+    }
+
+    .star {
+
+      position: absolute;
+
+      width: 3px;
+
+      height: 3px;
+
+      background: white;
+
+      border-radius: 50%;
+
+      opacity: 0.7;
+
+      animation: twinkle 2s infinite alternate;
+
+    }
+
+    @keyframes twinkle {
+
+      from { opacity: 0.2; }
+
+      to { opacity: 1; }
+
+    }
+
+    .container {
+
+      width: 100%;
+
+      max-width: 650px;
+
+      text-align: center;
+
+      position: relative;
+
+      z-index: 2;
+
+    }
+
+    .heart {
+
+      font-size: 65px;
+
+      animation: heartbeat 1.5s infinite;
+
+      margin-bottom: 15px;
+
+    }
+
+    @keyframes heartbeat {
+
+      0%, 100% {
+
+        transform: scale(1);
+
+      }
+
+      50% {
+
+        transform: scale(1.18);
+
+      }
+
+    }
+
+    h1 {
+
+      font-size: 38px;
+
+      margin-bottom: 12px;
+
+    }
+
+    .intro {
+
+      color: #ffd6e8;
+
+      font-size: 17px;
+
+      line-height: 1.6;
+
+      margin-bottom: 35px;
+
+    }
+
+    .cards {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 15px;
+
+    }
+
+    .card {
+
+      border: 1px solid rgba(255,255,255,0.2);
+
+      background: rgba(255,255,255,0.08);
+
+      backdrop-filter: blur(10px);
+
+      border-radius: 20px;
+
+      padding: 25px 15px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+    }
+
+    .card:hover {
+
+      transform: translateY(-7px) scale(1.02);
+
+      background: rgba(255,255,255,0.14);
+
+    }
+
+    .card .emoji {
+
+      font-size: 40px;
+
+      margin-bottom: 10px;
+
+    }
+
+    .card h2 {
+
+      font-size: 17px;
+
+      margin-bottom: 7px;
+
+    }
+
+    .card p {
+
+      color: #e9c9d8;
+
+      font-size: 13px;
+
+    }
+
+    .message-box {
+
+      display: none;
+
+      margin-top: 25px;
+
+      padding: 30px 22px;
+
+      background: rgba(255,255,255,0.95);
+
+      color: #4b1734;
+
+      border-radius: 25px;
+
+      animation: appear 0.5s ease;
+
+    }
+
+    @keyframes appear {
+
+      from {
+
+        opacity: 0;
+
+        transform: scale(0.8);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+      }
+
+    }
+
+    .message-box h2 {
+
+      color: #d63384;
+
+      margin-bottom: 15px;
+
+    }
+
+    .message-box p {
+
+      line-height: 1.8;
+
+      font-size: 16px;
+
+    }
+
+    .close {
+
+      margin-top: 20px;
+
+      border: none;
+
+      background: #d63384;
+
+      color: white;
+
+      padding: 11px 22px;
+
+      border-radius: 25px;
+
+      cursor: pointer;
+
+    }
+
+    .floating-heart {
+
+      position: fixed;
+
+      bottom: -30px;
+
+      font-size: 20px;
+
+      pointer-events: none;
+
+      animation: floatUp 6s linear forwards;
+
+      z-index: 1;
+
+    }
+
+    @keyframes floatUp {
+
+      0% {
+
+        transform: translateY(0) rotate(0deg);
+
+        opacity: 0;
+
+      }
+
+      15% {
+
+        opacity: 1;
+
+      }
+
+      100% {
+
+        transform: translateY(-110vh) rotate(360deg);
+
+        opacity: 0;
+
+      }
+
+    }
+
+    @media (max-width: 500px) {
+
+      h1 {
+
+        font-size: 30px;
+
+      }
+
+      .cards {
+
+        grid-template-columns: 1fr;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <main class="container">
+
+    <div class="heart">❤️</div>
+
+    <h1>Open When...</h1>
+
+    <p class="intro">
+
+      I made these little messages for you.
+
+      You don't have to open them all at once...
+
+      choose the one you need right now. ❤️
+
+    </p>
+
+    <div class="cards">
+
+      <div class="card" onclick="openMessage('sad')">
+
+        <div class="emoji">🥺</div>
+
+        <h2>Open when you're sad</h2>
+
+        <p>For the moments when you need a little smile.</p>
+
+      </div>
+
+      <div class="card" onclick="openMessage('miss')">
+
+        <div class="emoji">💌</div>
+
+        <h2>Open when you miss me</h2>
+
+        <p>For when you wish I was next to you.</p>
+
+      </div>
+
+      <div class="card" onclick="openMessage('smile')">
+
+        <div class="emoji">😊</div>
+
+        <h2>Open when you need a smile</h2>
+
+        <p>Because your smile is important to me.</p>
+
+      </div>
+
+      <div class="card" onclick="openMessage('love')">
+
+        <div class="emoji">❤️</div>
+
+        <h2>Open when you need love</h2>
+
+        <p>For a reminder of how special you are.</p>
+
+      </div>
+
+    </div>
+
+    <div class="message-box" id="messageBox">
+
+      <h2 id="messageTitle"></h2>
+
+      <p id="messageText"></p>
+
+      <button class="close" onclick="closeMessage()">
+
+        Close ❤️
+
+      </button>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    const messages = {
+
+      sad: {
+
+        title: "If you're sad 🥺",
+
+        text: `Hey you... I know I can't magically fix every bad day,
+
+        but I hope you remember that you don't have to face everything alone.
+
+        Take a breath, smile if you can, and remember that someone out there
+
+        genuinely cares about you. ❤️`
+
+      },
+
+      miss: {
+
+        title: "If you miss me 💌",
+
+        text: `If you're reading this because you miss me,
+
+        just know that I probably miss you too.
+
+        Distance or busy days don't change how important you are to me.
+
+        So consider this a tiny hug from me. ❤️`
+
+      },
+
+      smile: {
+
+        title: "If you need a smile 😊",
+
+        text: `STOP! 😭❤️
+
+        You are officially required to smile for at least 5 seconds.
+
+        Yes, I'm serious.
+
+        And if that didn't work...
+
+        remember that you have someone who loves seeing you happy. ❤️`
+
+      },
+
+      love: {
+
+        title: "If you need love ❤️",
+
+        text: `You are special.
+
+        Not because of one perfect day or one perfect moment,
+
+        but because of who you are.
+
+        Never forget that you deserve kindness, happiness and love.
+
+        And I'm really grateful that you're part of my life. ❤️`
+
+      }
+
+    };
+
+    function openMessage(type) {
+
+      document.getElementById("messageTitle").textContent =
+
+        messages[type].title;
+
+      document.getElementById("messageText").textContent =
+
+        messages[type].text;
+
+      document.getElementById("messageBox").style.display = "block";
+
+      document.getElementById("messageBox")
+
+        .scrollIntoView({ behavior: "smooth" });
+
+      createHearts();
+
+    }
+
+    function closeMessage() {
+
+      document.getElementById("messageBox").style.display = "none";
+
+    }
+
+    function createStars() {
+
+      const stars = document.getElementById("stars");
+
+      for (let i = 0; i < 70; i++) {
+
+        const star = document.createElement("div");
+
+        star.className = "star";
+
+        star.style.left = Math.random() * 100 + "%";
+
+        star.style.top = Math.random() * 100 + "%";
+
+        star.style.animationDelay =
+
+          Math.random() * 2 + "s";
+
+        stars.appendChild(star);
+
+      }
+
+    }
+
+    function createHearts() {
+
+      for (let i = 0; i < 12; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        heart.textContent = "❤️";
+
+        heart.style.left =
+
+          Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+
+          (4 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+
+          heart.remove();
+
+        }, 7000);
+
+      }
+
+    }
+
+    createStars();
+
+  </script>
+
+</body>
+
+</html>
